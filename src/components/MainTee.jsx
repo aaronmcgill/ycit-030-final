@@ -7,9 +7,9 @@ const MainTee = () => {
   const teeElement = tData.map((tee) => (
     <div className="tee-card">
       <div className="tee" key={tee.id}>
+        <img src={tee.photo} alt="t-shirt"/>
         {tee.color}${tee.price}
         {tee.description}
-        <img src={tee.photo} alt="t-shirt" />
       </div>
     </div>
   ));
