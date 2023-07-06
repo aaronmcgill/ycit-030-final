@@ -1,10 +1,12 @@
-import { Route, Routes, Link } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import TeeShirts from "./TeeShirts"
 import Cart from "./Cart"
 import Home from "./Home"
-import './App.css';
+
+
 
 function App() {
+
   return (
     <>
     <Routes>
