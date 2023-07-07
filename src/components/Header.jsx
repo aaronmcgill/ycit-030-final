@@ -1,8 +1,13 @@
 import "../App.css";
 
-const Header = () => {
+const Header = (props) => {
+
+  const { totalQty } = props;
     return (
-      <header>Header</header>
+      <header>
+        <p>Cart</p>
+        <div className="cart-counter">{totalQty}</div>
+      </header>
     );
   };
   

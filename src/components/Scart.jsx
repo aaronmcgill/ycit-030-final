@@ -37,9 +37,9 @@ export default function Scart(props) {
       {cartItems.length !== 0 &&
         <>
             <p>Sub Total: ${orderPartTotal}</p>
-            <p>GST: {gst}</p>
-            <p>QST: {qst}</p>
-            <p>Total Taxes: {orderTax}</p>
+            <p>GST: {gst.toFixed(2)}</p>
+            <p>QST: {qst.toFixed(2)}</p>
+            <p>Total Taxes: {orderTax.toFixed(2)}</p>
             <p>Shipping: {shippingCost}</p>
             <h3>Total: $<strong>{orderTotal.toFixed(2)}</strong></h3>
             <button onClick={() => console.log('hi')} className="remove">

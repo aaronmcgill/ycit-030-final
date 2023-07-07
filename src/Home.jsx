@@ -4,68 +4,73 @@ import Main from "./components/Main";
 import Footer from "./components/Footer";
 import Scart from "./components/Scart";
 // import tData from "./tshirtData"; removed local data file to use api endpoint
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
-const Home = () => {
+const Home = (props) => {
 
-    const [products, setProducts] = useState([]);
-    const [cartItems, setCartItems] = useState([]);
+    const {products, onAdd, cartItems, onRemove, totalQty} = props;
 
-    useEffect(() => {
-        (async function logUserData() {
-        try {
-            const res = await       
-            fetch('http://localhost:3001/products')
-            const data = await res.json();
-            setProducts(data);
-        } 
-        catch (error) {
-            alert(`The following error was found: ${error}`)        
-        }
-        })()    
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []); 
+    // const [products, setProducts] = useState([]);
+    // const [cartItems, setCartItems] = useState([]);
 
-    console.log(products);
-    // const [...products]  = prods;
+    // const totalQty = cartItems.reduce((acc, cartI) => acc + cartI.qty, 0);
+    // console.log("totalQty: ", totalQty);
 
-    const onAdd = (product) => {
-        const exists = cartItems.find( (x) => x.id === product.id);
+    // useEffect(() => {
+    //     (async function logUserData() {
+    //     try {
+    //         const res = await       
+    //         fetch('http://localhost:3001/products')
+    //         const data = await res.json();
+    //         setProducts(data);
+    //     } 
+    //     catch (error) {
+    //         alert(`The following error was found: ${error}`)        
+    //     }
+    //     })()    
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []); 
 
-        if(exists) {
-            setCartItems(
-                cartItems.map( (x) => 
-                    x.id === product.id ? { ...exists, qty: exists.qty + 1 } : x
-                )
-            );
-        } else {
-            setCartItems(
-                [...cartItems, { ...product, qty: 1 }]);
-        }
-    }
+    // console.log(products);
+    // // const [...products]  = prods;
 
-    const onRemove = (product) => {
-        const exists = cartItems.find( (x) => x.id === product.id);
+    // const onAdd = (product) => {
+    //     const exists = cartItems.find( (x) => x.id === product.id);
 
-        if(exists.qty === 1) {
-            setCartItems(
-                cartItems.filter( (x) => 
-                    x.id !== product.id ));
-        } else {
-            setCartItems(
-                cartItems.map( (x) => 
-                    x.id === product.id ? { ...exists, qty: exists.qty - 1 } : x
-                )
-            );
-        }
-    }
+    //     if(exists) {
+    //         setCartItems(
+    //             cartItems.map( (x) => 
+    //                 x.id === product.id ? { ...exists, qty: exists.qty + 1 } : x
+    //             )
+    //         );
+    //     } else {
+    //         setCartItems(
+    //             [...cartItems, { ...product, qty: 1 }]);
+    //     }
+    // }
+
+    // const onRemove = (product) => {
+    //     const exists = cartItems.find( (x) => x.id === product.id);
+
+    //     if(exists.qty === 1) {
+    //         setCartItems(
+    //             cartItems.filter( (x) => 
+    //                 x.id !== product.id ));
+    //     } else {
+    //         setCartItems(
+    //             cartItems.map( (x) => 
+    //                 x.id === product.id ? { ...exists, qty: exists.qty - 1 } : x
+    //             )
+    //         );
+    //     }
+    // }
 
     return (
         <>
-        <Header />
+        <Header totalQty={totalQty}/>
         <Nav/>
         <div className="wrapper">
-            <Main onAdd={onAdd} products={products}/>
+            <Main products={products} onAdd={onAdd} />
             <Scart onAdd={onAdd} onRemove={onRemove} cartItems={cartItems}/>
         </div>
         <Footer/>

@@ -16,10 +16,10 @@ const Nav = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/t-shirts">T-Shirts</Link>
+            <Link to="/organic-t-shirts">Organic T-Shirts</Link>
           </li>
           <li>
-            <Link to="/t-shirts">T-Shirts</Link>
+            <Link to="/regular-t-shirts">Regular T-Shirts</Link>
           </li>
           <li>
             <Link to="/Cart">Cart</Link>
