@@ -2,16 +2,19 @@ import React from "react";
 import Product from "./Product";
 import "../App.css";
 
-const Main = (props) => {
+const MainOrganicTee = (props) => {
 
   const {products, onAdd} = props;
 
   return (
     <main>      
-      <h1>Home page</h1>      
+      <h1>Organic Cotton T-shirts</h1>      
       <div className="tee-container">
         {
-          products.map((product)=> (
+          products.filter((product) => 
+            product.organic === true
+          )
+          .map((product)=> (
             <Product 
               key={product.id}
               product={product}
@@ -24,4 +27,4 @@ const Main = (props) => {
   );
 };
 
-export default Main;
+export default MainOrganicTee;

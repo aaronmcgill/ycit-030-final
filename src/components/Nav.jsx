@@ -21,9 +21,9 @@ const Nav = () => {
           <li>
             <Link to="/regular-t-shirts">Regular T-Shirts</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/Cart">Cart</Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </>

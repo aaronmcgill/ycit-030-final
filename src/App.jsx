@@ -25,8 +25,7 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(products);
-  // const [...products]  = prods;
+  // console.log(products);
 
   const onAdd = (product) => {
     const exists = cartItems.find((cartItem) => cartItem.id === product.id);
@@ -56,6 +55,14 @@ function App() {
     }
   };
 
+  const onRemoveAll = (product) => {
+    const exists = cartItems.find((cartItem) => cartItem.id === product.id);
+
+    if (exists) {
+      setCartItems(cartItems.filter((cartItem) => cartItem.id !== product.id));
+    }
+  };
+  
   return (
     <>
       <Routes>
@@ -67,6 +74,7 @@ function App() {
               cartItems={cartItems}
               onAdd={onAdd}
               onRemove={onRemove}
+              onRemoveAll={onRemoveAll}
               totalQty={totalQty}
             />
           }
@@ -79,6 +87,7 @@ function App() {
               cartItems={cartItems}
               onAdd={onAdd}
               onRemove={onRemove}
+              onRemoveAll={onRemoveAll}
               totalQty={totalQty}
             />
           }
@@ -91,11 +100,12 @@ function App() {
               cartItems={cartItems}
               onAdd={onAdd}
               onRemove={onRemove}
+              onRemoveAll={onRemoveAll}
               totalQty={totalQty}
             />
           }
         />
-        <Route path="/Cart" element={<Cart />} />
+        {/* MOVED THIS PAGE TO AN ASIDE ! <Route path="/Cart" element={<Cart />} /> */}
       </Routes>
     </>
   );
