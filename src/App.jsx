@@ -1,16 +1,21 @@
 import { Route, Routes } from "react-router-dom";
 import RegTeeShirts from "./RegTeeShirts";
 import OrganicTeeShirts from "./OrganicTeeShirts";
-import Cart from "./Cart";
 import Home from "./Home";
 import { useState, useEffect } from "react";
 
 function App() {
+
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [searchItem, setSearchItem] = useState('');
+
 
   const totalQty = cartItems.reduce((acc, cartI) => acc + cartI.qty, 0);
-  console.log("totalQty: ", totalQty);
+    
+  const searchForItems = (f) => {
+    setSearchItem(f);
+  }
 
   useEffect(() => {
     (async function logUserData() {
@@ -21,11 +26,9 @@ function App() {
       } catch (error) {
         alert(`The following error was found: ${error}`);
       }
-    })();
+    })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // console.log(products);
 
   const onAdd = (product) => {
     const exists = cartItems.find((cartItem) => cartItem.id === product.id);
@@ -62,7 +65,8 @@ function App() {
       setCartItems(cartItems.filter((cartItem) => cartItem.id !== product.id));
     }
   };
-  
+
+
   return (
     <>
       <Routes>
@@ -76,6 +80,8 @@ function App() {
               onRemove={onRemove}
               onRemoveAll={onRemoveAll}
               totalQty={totalQty}
+              searchItem={searchItem}
+              searchForItems={searchForItems}
             />
           }
         />

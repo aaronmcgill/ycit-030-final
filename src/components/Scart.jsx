@@ -1,4 +1,5 @@
 import React from "react";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 export default function Scart(props) {
   const { cartItems, onAdd, onRemove, onRemoveAll } = props;
@@ -61,9 +62,12 @@ export default function Scart(props) {
           <h3>
             Total: $<strong>{orderTotal.toFixed(2)}</strong>
           </h3>
-          <button onClick={() => console.log("hi")} className="checkout">
+          <PayPalScriptProvider options={{ clientId: "test" }}>
+            <PayPalButtons/>
+          </PayPalScriptProvider>
+          {/* <button onClick={() => console.log("hi")} className="checkout">
             Checkout
-          </button>
+          </button> */}
         </>
       )}
     </div>

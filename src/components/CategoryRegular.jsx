@@ -3,14 +3,19 @@ import Product from './Product';
 
 export default function CategoryRegular(props) {
 
-    const { products, onAdd } = props; 
+    const { products, onAdd, searchItem } = props; 
 
   return (
     <>
       <h2>Category Regular T-Shirt</h2>
-      <main>
         <div className="tee-container">
           {products
+            .filter((product) => {
+              return searchItem === '' 
+              ? product 
+              : `${product.color}${product.description}`
+              .toLowerCase().includes(searchItem)           
+            })
             .filter((product) => product.organic === false)
             .map((product) => (
               <Product
@@ -20,7 +25,6 @@ export default function CategoryRegular(props) {
               ></Product>
             ))}
         </div>
-      </main>
     </>
   );
 }
