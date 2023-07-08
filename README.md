@@ -7,3 +7,5 @@ the functionality includes:
 - Thumbnail to identify products
 - Search for items in the main page
 - Paypal mock checkout
+- Menu links using react router
+
